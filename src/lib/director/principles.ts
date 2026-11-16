@@ -1,0 +1,53 @@
+/** A small working library. Each principle is selected by the director, not stored as decoration.
+ * Faladdin, in the public account, matched personal facts to a library of readings.
+ * This library is not that company's text or code. A principle here must also be
+ * tested by a later action, which that earlier product did not do. */
+
+export type Principle = {
+  id: string;
+  source: string;
+  law: string;
+  when: { pressure?: string; desire?: string; turn?: number };
+  contradiction: string;
+  event: 'threshold' | 'sudden' | 'scale' | 'coin' | 'appetite' | 'price' | 'time' | 'reversal' | 'ordeal';
+  test: string;
+};
+
+export const PRINCIPLES: Principle[] = [
+  { id: 'rumi-nearness', source: 'Rumi, Masnavi', law: 'What is sought is already approaching, and grasping changes it.', when: { pressure: 'limit', desire: 'return' }, contradiction: 'The approach may be the pleasure, and the arrival a different feeling.', event: 'threshold', test: 'Leave the distance and see whether he crosses it.' },
+  { id: 'rasa-shringara', source: 'Natyashastra, shringara', law: 'Desire is staged as approach, interruption, and a trace of the beloved on an object.', when: { desire: 'return', turn: 1 }, contradiction: 'The object can replace the person.', event: 'appetite', test: 'Taste, or leave the taste untouched.' },
+  { id: 'gita-action', source: 'Bhagavad Gita', law: 'The act is yours. The fruit of the act is not a wage you can invoice.', when: { turn: 2 }, contradiction: 'Refusing the fruit can be another way of clutching it.', event: 'price', test: 'Take the sweetness and lose the proof, or keep the proof and miss the taste.' },
+  { id: 'shakespeare-time', source: 'Shakespeare, sonnets', law: 'Time alters the vow by repeating it one hour earlier.', when: { turn: 3 }, contradiction: 'A repeated hour can be memory, not prophecy.', event: 'time', test: 'Act again, knowing the earlier fact.' },
+  { id: 'aristotle-reversal', source: 'Aristotle, Poetics', law: 'A reversal is earned when the same act changes its agent.', when: { turn: 4 }, contradiction: 'Changing seats is not yet changing the wish.', event: 'reversal', test: 'Stay and be the one who is wanted.' },
+  { id: 'jung-shadow', source: 'Jung', law: 'The trait you arrange in the other returns as your own situation.', when: { turn: 4 }, contradiction: 'Recognition can be performed without being lived.', event: 'reversal', test: 'Accept the role you gave away.' },
+  { id: 'trickster-ordeal', source: 'Trickster tales', law: 'The method that worked the first time fails when it is copied.', when: { turn: 5 }, contradiction: 'A failed repetition may only mean the room changed, not the person.', event: 'ordeal', test: 'Do the first act again and notice that it does nothing.' },
+  { id: 'jinn-wish', source: 'Jinn stories', law: 'A granted wish keeps one condition the wisher did not hear.', when: { desire: 'return' }, contradiction: 'The condition may be the wish itself.', event: 'price', test: 'Accept the nearness without the proof.' },
+  { id: 'rumi-coin', source: 'Rumi, Masnavi', law: 'The coin in the hand is not the table in the street.', when: { desire: 'money' }, contradiction: 'Leaving the coin can be fear, not freedom.', event: 'coin', test: 'Take the coin or go to the unpaid-for evening.' },
+  { id: 'rasa-adbhuta', source: 'Natyashastra, adbhuta', law: 'Wonder is a fact arriving before its cause.', when: { pressure: 'sudden' }, contradiction: 'Wonder can be a missed memory.', event: 'sudden', test: 'Stay with the arrival instead of explaining it.' },
+  { id: 'gita-scale', source: 'Bhagavad Gita', law: 'A private gesture is too small when the field is already public.', when: { pressure: 'nearness' }, contradiction: 'The public field can be a way to avoid the private one.', event: 'scale', test: 'Make the gesture where others can see it, or refuse the audience.' },
+  { id: 'shakespeare-pause', source: 'Shakespeare', law: 'The pause before the answer is the scene.', when: { pressure: 'limit' }, contradiction: 'A pause can be avoidance wearing the costume of delicacy.', event: 'threshold', test: 'Do not close the last distance yourself.' },
+  { id: 'jung-anima', source: 'Jung', law: 'The figure at the door carries a quality the dreamer will not claim.', when: { desire: 'return', turn: 0 }, contradiction: 'The figure may simply be the other person.', event: 'threshold', test: 'Let him move before you interpret him.' },
+  { id: 'aristotle-magnitude', source: 'Aristotle', law: 'A recognition needs a size the witnesses can feel.', when: { pressure: 'ahead' }, contradiction: 'Size can drown the recognition.', event: 'scale', test: 'Keep the event larger than the two of you.' },
+  { id: 'rumi-fast', source: 'Rumi', law: 'Hunger makes the fruit visible. Eating ends that kind of sight.', when: { turn: 1 }, contradiction: 'Refusing food can be pride.', event: 'appetite', test: 'Eat once, and lose the habit of checking.' },
+  { id: 'faladdin-library', source: 'Library selection, not a company text', law: 'A reading is a selected pattern, not a fact about the person, until an action agrees.', when: { turn: 0 }, contradiction: 'Agreement of one action is still not knowledge.', event: 'threshold', test: 'Treat the pattern as a hypothesis and stage a distinguishing act.' },
+  { id: 'natya-vibhava', source: 'Natyashastra', law: 'The stimulant must be physical: scent, heat, distance, a shared object.', when: { turn: 1 }, contradiction: 'A stimulant can be noticed and still not move anyone.', event: 'appetite', test: 'Put the fruit where both can smell it.' },
+  { id: 'gita-period', source: 'Bhagavad Gita', law: 'The season of action is not the same as the action.', when: { turn: 2 }, contradiction: 'Blaming the season can excuse the act.', event: 'time', test: 'Repeat the hour with the season visible.' },
+  { id: 'shakespeare-role', source: 'Shakespeare', law: 'The suitor and the sued can exchange places inside one scene.', when: { turn: 4 }, contradiction: 'The exchange can be theatrical only.', event: 'reversal', test: 'Be kept, instead of keeping.' },
+  { id: 'jung-repetition', source: 'Jung', law: 'What returns unchanged is asking to be done differently.', when: { turn: 5 }, contradiction: 'Sameness can be fidelity.', event: 'ordeal', test: 'Refuse the copy of the first act.' },
+  { id: 'rumi-guest', source: 'Rumi', law: 'The guest who arrives uninvited tests whether the door was the wish.', when: { pressure: 'sudden', desire: 'return' }, contradiction: 'An uninvited guest can be intrusion.', event: 'sudden', test: 'Do not send for him. See if he is already there.' },
+  { id: 'rasa-karuna', source: 'Natyashastra, karuna', law: 'Tenderness appears when a sure thing is allowed to leave.', when: { turn: 3 }, contradiction: 'Letting something leave can be indifference.', event: 'price', test: 'Keep the hand and let the proof go.' },
+  { id: 'aristotle-cause', source: 'Aristotle', law: 'A later scene may use only a fact an earlier choice created.', when: { turn: 2 }, contradiction: 'Causality can become a lecture.', event: 'time', test: 'Return to the first seat carrying one earned fact.' },
+  { id: 'jinn-price', source: 'Jinn stories', law: 'The gift and the price arrive in the same hand.', when: { turn: 2 }, contradiction: 'Not every cost is the hidden clause.', event: 'price', test: 'Name the price by paying it or refusing it.' },
+  { id: 'trickster-food', source: 'Trickster tales', law: 'Food is how the story gets into the body before the moral can.', when: { turn: 1 }, contradiction: 'Food can be only food.', event: 'appetite', test: 'Let the taste decide for a few seconds.' },
+  { id: 'rumi-mirror', source: 'Rumi', law: 'The screen shows the gesture a moment before the body does.', when: { pressure: 'ahead' }, contradiction: 'The screen can be remembering, not foretelling.', event: 'scale', test: 'Look at the earlier image and do not copy it.' },
+  { id: 'shakespeare-witness', source: 'Shakespeare', law: 'A private act changes when a room is sure of a different ending.', when: { pressure: 'nearness' }, contradiction: 'The room can be wrong.', event: 'scale', test: 'Let the witnesses be sure, and do not correct them yet.' },
+  { id: 'gita-unasked', source: 'Bhagavad Gita', law: 'A deed done in order to be seen has already missed its fruit.', when: { desire: 'return', pressure: 'limit' }, contradiction: 'Invisibility can be sulking.', event: 'threshold', test: 'Make no summons. Clear the place.' },
+  { id: 'jung-exact', source: 'Jung', law: 'A large feeling fails unless the detail is exact.', when: { turn: 1 }, contradiction: 'Exactness can shrink the feeling until it cannot live.', event: 'appetite', test: 'Keep one exact sensation and refuse the general one.' },
+  { id: 'faladdin-revision', source: 'Library revised by action', law: 'The next reading must change when the action contradicted the last reading.', when: { turn: 3 }, contradiction: 'One contradiction does not retire a pattern.', event: 'time', test: 'Stage the rival reading in the same room.' },
+  { id: 'natya-anubhava', source: 'Natyashastra', law: 'The consequence is a visible change of body, seat, or object.', when: { turn: 2 }, contradiction: 'A visible change can be accidental.', event: 'price', test: 'Change the seat, the hand, or the food, and nothing else.' },
+  { id: 'rumi-empty', source: 'Rumi', law: 'The empty seat is already a question.', when: { desire: 'return', pressure: 'limit', turn: 0 }, contradiction: 'An empty seat can mean absence, not invitation.', event: 'threshold', test: 'Free the seat without pulling him into it.' },
+  { id: 'aristotle-one', source: 'Aristotle', law: 'One action should make the next action possible and the other impossible.', when: { turn: 4 }, contradiction: 'Some doors can be reopened.', event: 'reversal', test: 'Choose so that one earlier possibility is gone.' },
+  { id: 'jinn-later', source: 'Jinn stories', law: 'The clause is understood only after the gift has been used.', when: { turn: 5 }, contradiction: 'Later understanding can be a story told to soothe.', event: 'ordeal', test: 'Use the gift, then meet the missing condition.' },
+  { id: 'shakespeare-coda', source: 'Shakespeare', law: 'The last speech may mention only what the acts themselves established.', when: { turn: 5 }, contradiction: 'A speech can smuggle in a moral the acts never earned.', event: 'ordeal', test: 'End on the earned fact.' },
+  { id: 'coin-street', source: 'Aristotle', law: 'Possession and participation cannot occupy the same hand.', when: { desire: 'money', turn: 0 }, contradiction: 'Some evenings can be both bought and entered.', event: 'coin', test: 'Hold the coin or sit at the table.' },
+];
