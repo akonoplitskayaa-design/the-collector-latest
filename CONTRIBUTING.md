@@ -18,6 +18,7 @@ Use Node.js 24 or newer:
 ```sh
 npm install
 npm test
+npm run demo
 ```
 
 The public repository is not a complete deployed website. The component `house.tsx` depends on its original host application.
@@ -32,4 +33,4 @@ Use synthetic test profiles. Never include someone else's real birth details, pr
 
 ## Licensing
 
-An explicit open-source license has not yet been selected by the repository owner. Public access alone does not grant broad reuse permission. We can discuss potential contributions, but do not assume that code redistribution is already authorized.
+This public repository is licensed under MIT. See [LICENSE](LICENSE). The private main THE COLLECTOR repository remains separate and is not automatically licensed by this public repository.
