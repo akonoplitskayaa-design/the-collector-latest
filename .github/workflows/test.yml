@@ -25,3 +25,5 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Run public prototype tests
         run: npm test
+      - name: Run offline demo
+        run: npm run demo
