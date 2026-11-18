@@ -2,13 +2,13 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { answerReturn, conclusions, openFilm, play, privateLogic, publicView, type PrivateIntake } from './direct.ts';
 
-const DESIRE = 'Я хочу, чтобы человек, которого я люблю, сам захотел вернуться ко мне.';
+const DESIRE = 'Я хочу, чтобы человек из прошлого сам захотел вернуться в наш город.';
 
 function intake(theme: 'price' | 'appetite'): PrivateIntake {
   return {
-    name: { text: 'Анна', etymology: { languages: ['Hebrew'], meanings: ['grace'] } },
+    name: { text: 'Мира', etymology: { languages: ['fixture'], meanings: ['fictionalmeaning'] } },
     desire: DESIRE,
-    birth: { date: '1995-11-17', time: '10:00', place: 'Moscow' },
+    birth: { date: '1995-11-18', time: '06:15', place: 'Moscow' },
     referenceInstant: '2026-11-16T04:00:00Z',
     chart: [{ source: 'Saturn square Moon', precision: 'computed', theme }],
   };
@@ -17,13 +17,13 @@ function intake(theme: 'price' | 'appetite'): PrivateIntake {
 const BOTH: Array<'space' | 'reach' | 'sight'> = ['space', 'reach', 'space', 'reach', 'space', 'reach', 'space'];
 
 test('birth data and the reference day are calculated before the film', () => {
-  const birth = { date: '1995-11-17', time: '10:00', place: 'Moscow' };
-  const name = { text: 'Анна' };
+  const birth = { date: '1995-11-18', time: '06:15', place: 'Moscow' };
+  const name = { text: 'Мира' };
   const early = openFilm({ name, desire: DESIRE, birth, referenceInstant: '2026-11-16T04:00:00Z' });
   const late = openFilm({ name, desire: DESIRE, birth, referenceInstant: '2027-11-16T04:00:00Z' });
   const otherBirth = openFilm({
     name, desire: DESIRE, referenceInstant: '2026-11-16T04:00:00Z',
-    birth: { date: '1990-01-01', time: '10:00', place: 'Moscow' },
+    birth: { date: '1990-01-01', time: '06:15', place: 'Moscow' },
   });
   assert.equal(early.privateState.person.precision.angles, 'computed');
   assert.equal(typeof early.privateState.person.ascendant, 'number');
@@ -50,9 +50,9 @@ test('birth data and the reference day are calculated before the film', () => {
 
 test('an unknown birth place does not invent angles', () => {
   const session = openFilm({
-    name: { text: 'Анна' },
+    name: { text: 'Мира' },
     desire: DESIRE,
-    birth: { date: '1995-11-17', time: null, place: null },
+    birth: { date: '1995-11-18', time: null, place: null },
     referenceInstant: '2026-11-16T04:00:00Z',
   });
   assert.equal(session.privateState.person.precision.angles, 'unavailable');
@@ -67,9 +67,9 @@ test('a dangerous desire is stopped before any film', () => {
 
 test('the calculated reading can carry a film to one sign without a supplied chart', () => {
   const session = play({
-    name: { text: 'Анна' },
+    name: { text: 'Мира' },
     desire: DESIRE,
-    birth: { date: '1995-11-17', time: '10:00', place: 'Moscow' },
+    birth: { date: '1995-11-18', time: '06:15', place: 'Moscow' },
     referenceInstant: '2026-11-16T04:00:00Z',
   }, BOTH);
   const view = publicView(session);
@@ -79,7 +79,7 @@ test('the calculated reading can carry a film to one sign without a supplied cha
   assert.match(privateLogic(session), /Mahadasha/);
   assert.match(privateLogic(session), /without being asked/);
   const shown = JSON.stringify(view);
-  for (const word of ['люблю', 'человек', 'вернуться', 'анна', 'mahadasha']) {
+  for (const word of ['прошлого', 'человек', 'вернуться', 'мира', 'mahadasha']) {
     assert.equal(shown.toLocaleLowerCase().includes(word), false, word);
   }
 });
@@ -93,7 +93,7 @@ test('the full passage ends in one sign and does not repeat private words', () =
   assert.equal(view.returnPrompt, 'WHAT HAPPENED?');
   assert.equal(new Set([view.sign.object, view.sign.color, view.sign.material, view.sign.character]).size, 4);
   const shown = JSON.stringify(view);
-  for (const word of ['люблю', 'человек', 'вернуться', 'захотел', 'анна', 'grace', 'saturn']) {
+  for (const word of ['люблю', 'человек', 'вернуться', 'захотел', 'мира', 'fictionalmeaning', 'saturn']) {
     assert.equal(shown.toLocaleLowerCase().includes(word), false, word);
   }
   assert.match(privateLogic(session), /Saturn square Moon/);
@@ -136,9 +136,9 @@ test('clearing the seat lets him sit without being touched', () => {
 
 test('an english wish that shares ordinary words still reaches the third scene', () => {
   const session = play({
-    name: { text: 'Anna' },
-    desire: 'I want the person I love to come back to me.',
-    birth: { date: '1995-11-17', time: '10:00', place: 'Moscow' },
+    name: { text: 'Mira' },
+    desire: 'I want the person I once worked with to return of their own will.',
+    birth: { date: '1995-11-18', time: '06:15', place: 'Moscow' },
     referenceInstant: '2026-11-16T04:00:00Z',
   }, ['space', 'reach', 'space']);
   const view = publicView(session);
@@ -175,13 +175,13 @@ test('the three first acts open three different events', () => {
 
 test('money and an unforced return are not read as the same wish', () => {
   const love = openFilm({
-    name: { text: 'Анна' }, desire: DESIRE,
-    birth: { date: '1995-11-17', time: '10:00', place: 'Moscow' },
+    name: { text: 'Мира' }, desire: DESIRE,
+    birth: { date: '1995-11-18', time: '06:15', place: 'Moscow' },
     referenceInstant: '2026-11-16T04:00:00Z',
   });
   const money = openFilm({
-    name: { text: 'Анна' }, desire: 'I want enough money to be free.',
-    birth: { date: '1995-11-17', time: '10:00', place: 'Moscow' },
+    name: { text: 'Мира' }, desire: 'I want enough money to be free.',
+    birth: { date: '1995-11-18', time: '06:15', place: 'Moscow' },
     referenceInstant: '2026-11-16T04:00:00Z',
   });
   assert.equal(love.privateState.reading.unforcedMovement, true);
