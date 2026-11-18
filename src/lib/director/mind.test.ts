@@ -3,20 +3,20 @@ import test from 'node:test';
 import { chooseMind, internalTrace, openMind } from './mind.ts';
 import { PRINCIPLES } from './principles.ts';
 
-const WISH = 'Я хочу, чтобы человек, которого я люблю, сам захотел вернуться ко мне.';
+const WISH = 'Я хочу, чтобы человек из прошлого сам захотел вернуться в наш город.';
 
 function born(date: string, reference: string) {
   return openMind({
-    name: 'Анна',
+    name: 'Мира',
     desire: WISH,
-    birth: { date, time: '10:00', place: 'Moscow' },
+    birth: { date, time: '06:15', place: 'Moscow' },
     referenceInstant: reference,
   });
 }
 
 test('the library is small enough to be used, and every selected principle is one of its entries', () => {
   assert.equal(PRINCIPLES.length >= 30 && PRINCIPLES.length <= 50, true);
-  const session = born('1995-11-17', '2026-11-16T05:00:00Z');
+  const session = born('1995-11-18', '2026-11-16T05:00:00Z');
   const ids = new Set(PRINCIPLES.map((item) => item.id));
   for (const step of internalTrace(session)) {
     const id = step.principle.split(' ')[0]!;
@@ -26,9 +26,9 @@ test('the library is small enough to be used, and every selected principle is on
 });
 
 test('A. the same wish and two charts do not receive the same directing task', () => {
-  const anna = born('1995-11-17', '2026-11-16T05:00:00Z');
+  const mira = born('1995-11-18', '2026-11-16T05:00:00Z');
   const other = born('1990-06-21', '2026-11-16T05:00:00Z');
-  const left = internalTrace(anna)[0]!;
+  const left = internalTrace(mira)[0]!;
   const right = internalTrace(other)[0]!;
   assert.notEqual(left.natal[0], right.natal[0]);
   assert.notEqual(left.synthesis, right.synthesis);
@@ -37,7 +37,7 @@ test('A. the same wish and two charts do not receive the same directing task', (
 });
 
 test('B. the same chart and wish fork when the act forks', () => {
-  const start = born('1995-11-17', '2026-11-16T05:00:00Z');
+  const start = born('1995-11-18', '2026-11-16T05:00:00Z');
   const seat = chooseMind(start, 'clear-seat');
   const hand = chooseMind(start, 'offer-hand');
   assert.notEqual(seat.scene?.lines.join('\n'), hand.scene?.lines.join('\n'));
@@ -53,8 +53,8 @@ test('B. the same chart and wish fork when the act forks', () => {
 });
 
 test('C. the same person in two periods is not directed as one period', () => {
-  const early = born('1995-11-17', '2026-11-16T05:00:00Z');
-  const late = born('1995-11-17', '2030-11-16T05:00:00Z');
+  const early = born('1995-11-18', '2026-11-16T05:00:00Z');
+  const late = born('1995-11-18', '2030-11-16T05:00:00Z');
   assert.notEqual(early.person.antardasha, late.person.antardasha);
   const left = chooseMind(chooseMind(early, 'clear-seat'), early.scene ? 'leave-fruit' : 'clear-seat');
   const right = chooseMind(chooseMind(late, 'clear-seat'), late.scene ? 'leave-fruit' : 'clear-seat');
@@ -65,7 +65,7 @@ test('C. the same person in two periods is not directed as one period', () => {
 });
 
 test('the questions do not return after the opening', () => {
-  let session = born('1995-11-17', '2026-11-16T05:00:00Z');
+  let session = born('1995-11-18', '2026-11-16T05:00:00Z');
   const seen = new Set<string>();
   while (session.scene) {
     const labels = session.scene.choices.map((choice) => choice.label).join('|');
@@ -79,8 +79,8 @@ test('the questions do not return after the opening', () => {
 
 test('an unknown birth time does not invent houses', () => {
   const session = openMind({
-    name: 'Анна', desire: WISH,
-    birth: { date: '1995-11-17', time: null, place: null },
+    name: 'Мира', desire: WISH,
+    birth: { date: '1995-11-18', time: null, place: null },
     referenceInstant: '2026-11-16T05:00:00Z',
   });
   assert.equal(session.person.houses, null);
