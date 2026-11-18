@@ -4,14 +4,25 @@
   "private": true,
   "description": "Standalone offline causal narrative toolkit and experimental research code",
   "type": "module",
-  "engines": { "node": ">=24" },
-  "exports": { ".": { "types": "./src/causal/index.d.mts", "default": "./src/causal/index.mjs" } },
+  "engines": {
+    "node": ">=24"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/causal/index.d.mts",
+      "default": "./src/causal/index.mjs"
+    }
+  },
   "scripts": {
     "test": "node --test src/lib/director/*.test.ts tests/*.test.mjs",
     "test:core": "node --test tests/causal-core.test.mjs",
     "demo": "node examples/quickstart.mjs",
     "demo:core": "node examples/causal-standalone.mjs"
   },
-  "dependencies": { "astronomy-engine": "2.1.19" },
+  "dependencies": {
+    "astronomy-engine": "2.1.19",
+    "caelus": "0.25.0",
+    "caelus-delineations-pd": "0.1.6"
+  },
   "license": "MIT"
 }
