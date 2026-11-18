@@ -1,59 +1,54 @@
-# THE COLLECTOR
+# THE COLLECTOR: Causal Narrative Research
 
-**Experimental toolkit for causal, choice-driven interactive narratives.**
+**An MIT-licensed open-source toolkit for causal narrative branches, inspectable choice evidence, and offline testing of interactive story state.**
 
-THE COLLECTOR explores how a personal input can lead to a dramatic question, a physical choice, a changed fictional world, and an evidence-informed next scene. This repository is a **public research prototype** for developers interested in adaptive storytelling, branching narrative mechanics, and adversarial evaluation of AI-assisted narrative systems.
+This public research component comes from a longer-running THE COLLECTOR creative software project. It explores whether a player's action genuinely changes a fictional world, whether an outcome has an inspectable cause, and whether two choices create distinct future states.
 
-> **Scope:** This public repository contains an earlier experimental screen and Director implementation. It is **not** the latest private Codex implementation, a finished app, or a released AI Director. The main production-oriented project remains private. No live AI model is invoked by the public `mind.ts` runtime.
+**Current status:** Independent runnable core, synthetic demonstrations and automated tests. Early-stage research without demonstrated outside adoption, a published npm package or a production-ready generative AI director. The tests do not establish artistic excellence or personal AI generation.
 
-## What is here?
+## Run the standalone toolkit
 
-| Path | Purpose |
-| --- | --- |
-| `src/components/house.tsx` | Screen used by the earlier public prototype; depends on its host React application |
-| `src/lib/director/mind.ts` | Deterministic choice loop currently called by the screen |
-| `src/lib/director/chart.ts` | Birth-chart-derived input using `astronomy-engine` and project-specific approximations |
-| `src/lib/director/astrology.ts` | Approximate symbolic calculations and transit/dasha helpers |
-| `src/lib/director/desire.ts` | Experimental rule-based desire classification |
-| `src/lib/director/principles.ts` | Small dramatic-principle reference catalogue |
-| `src/lib/director/quality.ts` | Structural scene and philosophy-contract checks |
-| `src/lib/director/direct.ts` | Separate deterministic Director experiment; not the screen runtime |
-| `src/lib/director/codexFilm.ts` | An authored example film, retained for reference; not the screen runtime |
-| `src/lib/director/*.test.ts` | Public tests of selected branching and contract properties |
+Requires Node.js 24+. No keys, Codex credits, paid models or personal inputs.
 
-## Why this might be useful
-
-The public code provides inspectable examples of:
-
-1. Keeping private interpretation separate from public scene text.
-2. Giving physical choices distinct consequences and recorded evidence.
-3. Checking branch structure and testing how story state changes after choices.
-4. Comparing outcomes for different input profiles and adversarial cases.
-
-These are **research examples**, not claims that the current prototype has proven general personalization, semantic validity of symbolic readings, or literary excellence.
-
-## Run the public tests
-
-Prerequisite: **Node.js 24** and npm.
-
-```sh
+~~~sh
 npm install
+npm run demo:core
+npm run test:core
+~~~
+
+The demo compares two choices, prints a changed world state and shows a causal evidence trail. GitHub Actions runs the public tests on push.
+
+## Reusable components
+
+| Resource | What it does |
+| --- | --- |
+| [Standalone causal core](src/causal/index.mjs) | Validate story graphs, apply decisions, compare branches and record causal events |
+| [TypeScript API](src/causal/index.d.mts) | Type declarations for consumers |
+| [Working example](examples/causal-standalone.mjs) | Offline counterfactual branch comparison |
+| [Core tests](tests/causal-core.test.mjs) | Structural, replay, privacy-of-future and branch checks |
+| [Developer guide](docs/CAUSAL_CORE.md) | API usage, boundaries and research roadmap |
+
+The reusable core is a small independent implementation of engineering ideas explored in the wider project. The private production application and artistic materials remain unpublished.
+
+## Earlier public research
+
+The existing [experimental director](src/lib/director) contains an earlier deterministic screen runtime (mind.ts), a separate algorithmic experiment (direct.ts), an authored film example (codexFilm.ts), symbolic/chart routines and selected tests. These are **not** the current private Director. The public mind.ts does not call a live AI model. The [React screen](src/components/house.tsx) requires its original host application.
+
+~~~sh
 npm test
 npm run demo
-```
+~~~
 
-`npm run demo` prints an offline first scene, follows one synthetic choice, and shows the recorded consequence and revised hypothesis weights. It is an illustrative deterministic example, not a live AI-generated story. The React screen is a component from a separate host application and is not a standalone runnable web app here. The public GitHub Actions workflow attempts the tests and demo; check its latest result before treating them as verified.
+See [architecture and boundaries](docs/ARCHITECTURE.md).
 
-## Architecture and limitations
+## Why this matters
 
-See [Architecture and evaluation](docs/ARCHITECTURE.md) for the real dependency paths, current limitations, and the difference between deterministic tests and proof of artistic quality.
+The long-term goal is to turn a desire into a dramatic question, physical decisions, consequences, and evidence-informed next scenes. Open-source research focuses on reproducible counterfactual tests of causal continuity in interactive and AI-assisted stories. Integration with live AI, independent tests of semantic causality and demonstrated third-party utility are future work.
 
-## Contributing
+Contributions in reachability, state invariants, counterfactual tests and trace transparency are welcome. See [contributing](CONTRIBUTING.md) and [security](SECURITY.md).
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md) for focused ways to help with counterfactual stability, causal traces, branching behavior, and documentation. Please do not open issues containing personal birth records, private desires, passwords, or API keys.
+## Real project history
 
-## Status and licensing
+THE COLLECTOR development predates this public GitHub repository. The separate private project contains migration files dated from August 2026, with substantial later work in November 2026. The **public repository was created 16 November 2026** to expose selected research methods. This creation date is not the start of the underlying project.
 
-This is an early-stage, publicly inspectable research prototype. It has no demonstrated broad adoption or stable API. Public files in this repository are published under the [MIT License](LICENSE). The separate private production-oriented repository is not covered by this license. This public copy has no demonstrated broad adoption or stable API.
-
-Maintainer: [akonoplitskayaa-design](https://github.com/akonoplitskayaa-design).
+All public files use the [MIT license](LICENSE). The separate private application and its proprietary creative material retain their existing rights. Maintainer: [akonoplitskayaa-design](https://github.com/akonoplitskayaa-design).

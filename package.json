@@ -1,18 +1,17 @@
 {
   "name": "the-collector-public-research",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "Experimental public research code for causal interactive narratives.",
+  "description": "Standalone offline causal narrative toolkit and experimental research code",
   "type": "module",
-  "engines": {
-    "node": ">=24"
-  },
+  "engines": { "node": ">=24" },
+  "exports": { ".": { "types": "./src/causal/index.d.mts", "default": "./src/causal/index.mjs" } },
   "scripts": {
-    "test": "node --test src/lib/director/*.test.ts",
-    "demo": "node examples/quickstart.mjs"
+    "test": "node --test src/lib/director/*.test.ts tests/*.test.mjs",
+    "test:core": "node --test tests/causal-core.test.mjs",
+    "demo": "node examples/quickstart.mjs",
+    "demo:core": "node examples/causal-standalone.mjs"
   },
-  "dependencies": {
-    "astronomy-engine": "2.1.19"
-  },
+  "dependencies": { "astronomy-engine": "2.1.19" },
   "license": "MIT"
 }

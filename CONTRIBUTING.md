@@ -1,36 +1,32 @@
 # Contributing
 
-THE COLLECTOR is an experimental research project. The most useful contributions improve the **reproducibility and honesty** of causal narrative evaluation.
+THE COLLECTOR public research welcomes reproducible improvements to causal branching and evidence trails.
 
-## Good first contributions
+The standalone library is in [src/causal/index.mjs](src/causal/index.mjs), with TypeScript declarations alongside. The earlier public Director prototype is in src/lib/director.
 
-- Add counterfactual tests that change one relevant feature and track where the difference propagates.
-- Add invariance tests that change an unrelated feature without perturbing the selected directing task.
-- Identify cases where generated text sounds different while the causal choice is effectively identical.
-- Strengthen assertions for physical, mutually exclusive actions and reachable branch outcomes.
-- Improve the documentation of calculation approximations and missing input information.
-- Report reproducible errors with a minimal synthetic fixture.
+## Useful contributions
 
-## Local validation
+* Counterfactual fixtures that change one relevant state property and trace its consequences.
+* Invariance checks where unrelated metadata cannot affect a branch.
+* Reachability, cycle and equivalent-outcome detection.
+* Transparent causal traces that hide future outcomes from readers.
+* Reproducible developer examples and safer adapters for candidate AI-generated story graphs.
+* Documentation of earlier symbolic calculations and missing inputs.
 
-Use Node.js 24 or newer:
+## Local checks
 
-```sh
+Node.js 24+ required.
+
+~~~sh
 npm install
+npm run test:core
+npm run demo:core
 npm test
 npm run demo
-```
+~~~
 
-The public repository is not a complete deployed website. The component `house.tsx` depends on its original host application.
+For substantial changes, open an issue describing the invariant, a minimal synthetic failing test, and exactly what would improve. Passing structural tests does not prove emotional or literary quality.
 
-## Review expectations
+## Privacy and licensing
 
-Open an issue first for architectural changes. For a proposed code change, explain the affected invariant, the failure fixture, what must change, what must remain unchanged, and exactly what the tests do and do not prove.
-
-## Privacy
-
-Use synthetic test profiles. Never include someone else's real birth details, private desires, API keys, access tokens, credentials or private production files.
-
-## Licensing
-
-This public repository is licensed under MIT. See [LICENSE](LICENSE). The private main THE COLLECTOR repository remains separate and is not automatically licensed by this public repository.
+Use synthetic people and events. Never post private birth details, desires, credentials, keys, proprietary artistic source or private application code. The public repository is MIT licensed; the private main application is separate.

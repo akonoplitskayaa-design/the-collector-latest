@@ -1,4 +1,4 @@
-name: Public prototype tests
+name: Public causal narrative tests
 
 on:
   push:
@@ -23,7 +23,11 @@ jobs:
           node-version: '24'
       - name: Install public dependencies
         run: npm install --no-audit --no-fund
-      - name: Run public prototype tests
+      - name: Run public prototype and core tests
         run: npm test
-      - name: Run offline demo
+      - name: Check standalone core
+        run: npm run test:core
+      - name: Demonstrate standalone core
+        run: npm run demo:core
+      - name: Run previous offline example
         run: npm run demo
