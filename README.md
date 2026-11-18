@@ -39,9 +39,10 @@ Prerequisite: **Node.js 24** and npm.
 ```sh
 npm install
 npm test
+npm run demo
 ```
 
-The root package manifest supports the included Node test files. The React screen is a component from a separate host application and is not a standalone runnable web app here. The test command is provided for reproducibility; it has not been independently executed as part of this documentation update.
+`npm run demo` prints an offline first scene, follows one synthetic choice, and shows the recorded consequence and revised hypothesis weights. It is an illustrative deterministic example, not a live AI-generated story. The React screen is a component from a separate host application and is not a standalone runnable web app here. The public GitHub Actions workflow attempts the tests and demo; check its latest result before treating them as verified.
 
 ## Architecture and limitations
 
@@ -53,6 +54,6 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md) for focused ways to help with counterfac
 
 ## Status and licensing
 
-This is an early-stage, publicly inspectable research prototype. It has no demonstrated broad adoption or stable API. An open-source license has **not yet been selected** for this repository. Until an explicit license is added, public visibility alone does not grant general permission to reuse or redistribute the code. See GitHub's guidance on repository licensing.
+This is an early-stage, publicly inspectable research prototype. It has no demonstrated broad adoption or stable API. Public files in this repository are published under the [MIT License](LICENSE). The separate private production-oriented repository is not covered by this license. This public copy has no demonstrated broad adoption or stable API.
 
 Maintainer: [akonoplitskayaa-design](https://github.com/akonoplitskayaa-design).
