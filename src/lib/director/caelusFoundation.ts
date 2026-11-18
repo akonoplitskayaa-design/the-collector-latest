@@ -50,7 +50,10 @@ function sourcesFor(tradition: FoundationTradition) {
   const selected = CORPUS_SELECTION[tradition];
   const source = publicDomainSources.find((item) => item.id === selected.sourceId);
   if (!source) throw new Error(`Missing corpus source ${selected.sourceId}`);
-  const rules = source.rules.filter((rule) => rule.id.startsWith(selected.rulePrefix));
+  const rules = source.rules.filter((rule) =>
+    rule.id.startsWith(selected.rulePrefix) &&
+    (tradition !== 'western-historical' || passageById.get(rule.id)?.when.kind === 'aspect'),
+  );
   if (rules.length === 0) throw new Error(`No rules for ${tradition}`);
   for (const rule of rules) {
     const passage = passageById.get(rule.id);
